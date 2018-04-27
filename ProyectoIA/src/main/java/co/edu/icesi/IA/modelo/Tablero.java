@@ -34,6 +34,8 @@ public class Tablero {
 		int vecinos = 0;
 		int[][] nuevaMatriz = matriz;
 		
+		//Todo está malo
+		
 		
 		for (int i = 0; i < matriz.length; i++) {
 			
