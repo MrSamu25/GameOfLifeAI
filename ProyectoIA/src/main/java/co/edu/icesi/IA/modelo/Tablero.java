@@ -120,6 +120,17 @@ public class Tablero {
 		return vecinos;
 	}
 	
+	public void generarEstado() {
+		int numero;
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[i].length; j++) {
+				numero = (int) (Math.random()*10) + 1;
+				if(numero < 2)
+					añadirCelulaVida(i, j);
+			}
+		}
+	}
+	
 	//Añade una celula viva en la posición (i,j)
 	public void añadirCelulaVida(int i, int j) {
 		matriz[i][j] = VIVO;

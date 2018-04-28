@@ -66,30 +66,31 @@ public class InterfazPrincipal extends JFrame{
 	
 	public void cargarConfiguracionInicial() {	
 		
-		tablero = new Tablero( (PanelTablero.ALTO - PanelTablero.INICIO_Y)/PanelTablero.L, (PanelTablero.ANCHO - PanelTablero.INICIO_X) / PanelTablero.L );	
+		tablero = new Tablero( (PanelTablero.ALTO)/PanelTablero.L, (PanelTablero.ANCHO) / PanelTablero.L );	
 		
-		tablero.añadirCelulaVida(30, 30);
-		tablero.añadirCelulaVida(31, 30);
-		tablero.añadirCelulaVida(32, 30);
-		
-		tablero.añadirCelulaVida(20, 20);
-		tablero.añadirCelulaVida(20,21);
-		tablero.añadirCelulaVida(21, 20);
-		tablero.añadirCelulaVida(21, 21);
-		
-		
-		tablero.añadirCelulaVida(10, 60);
-		tablero.añadirCelulaVida(10, 61);
-		tablero.añadirCelulaVida(11, 62);
-		tablero.añadirCelulaVida(11, 61);
-		tablero.añadirCelulaVida(12, 61);
-		
-		
-		tablero.añadirCelulaVida(tablero.getMatriz().length-1, tablero.getMatriz()[0].length-1);
-		tablero.añadirCelulaVida(0,0);
-		
-		tablero.añadirCelulaVida(0, tablero.getMatriz()[0].length-1);
-		tablero.añadirCelulaVida(tablero.getMatriz().length-1, 0);		
+		tablero.generarEstado();
+//		tablero.añadirCelulaVida(30, 30);
+//		tablero.añadirCelulaVida(31, 30);
+//		tablero.añadirCelulaVida(32, 30);
+//		
+//		tablero.añadirCelulaVida(20, 20);
+//		tablero.añadirCelulaVida(20,21);
+//		tablero.añadirCelulaVida(21, 20);
+//		tablero.añadirCelulaVida(21, 21);
+//		
+//		
+//		tablero.añadirCelulaVida(10, 60);
+//		tablero.añadirCelulaVida(10, 61);
+//		tablero.añadirCelulaVida(11, 62);
+//		tablero.añadirCelulaVida(11, 61);
+//		tablero.añadirCelulaVida(12, 61);
+//		
+//		
+//		tablero.añadirCelulaVida(tablero.getMatriz().length-1, tablero.getMatriz()[0].length-1);
+//		tablero.añadirCelulaVida(0,0);
+//		
+//		tablero.añadirCelulaVida(0, tablero.getMatriz()[0].length-1);
+//		tablero.añadirCelulaVida(tablero.getMatriz().length-1, 0);		
 	}
 	
 	public void recargarPanel() {
