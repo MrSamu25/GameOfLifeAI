@@ -38,7 +38,7 @@ public class InterfazPrincipal extends JFrame{
 		panelTablero = new PanelTablero();
 		
 		
-		add(panelBanner, BorderLayout.NORTH);;
+		add(panelBanner, BorderLayout.NORTH);
 		
 	}
 	
