@@ -25,7 +25,7 @@ public class PanelBanner extends JPanel{
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	public PanelBanner() {
 		setPreferredSize(new Dimension(0,100));		
-		setBackground(Color.BLACK);
+		setBackground(Color.LIGHT_GRAY);
 		
 	}
 	//////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,8 +36,8 @@ public class PanelBanner extends JPanel{
 
 		super.paintComponent(g);
 		
-		//C		
-		g.setColor(Color.RED);
+		//C	
+		g.setColor(Color.ORANGE);
 		g.fillRect(INICIO_X, INICIO_Y, ANCHO, ANCHO);
 		g.fillRect(INICIO_X + ANCHO, INICIO_Y, ANCHO, ANCHO);
 		g.fillRect(INICIO_X - ANCHO, INICIO_Y + ANCHO, ANCHO, ANCHO);
