@@ -9,24 +9,30 @@ public class main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		tablero = new Tablero(5,5);
+		tablero = new Tablero(6,6);
 		
 		mostrarMatriz(tablero.getMatriz());		
 		System.out.println();		
 		
-		tablero.añadirCelulaVida(2, 1);
-		tablero.añadirCelulaVida(2, 2);
-		tablero.añadirCelulaVida(2, 3);	
-				
-		mostrarMatriz(tablero.getMatriz());		
-			
-		
-		mostrarMatrizVecinos(tablero.getMatriz());
-		
-		tablero.siguienteEstado();
-		mostrarMatriz(tablero.getMatriz());
 
 		
+		tablero.añadirCelulaVida(1, 3);
+		tablero.añadirCelulaVida(1, 4);
+		tablero.añadirCelulaVida(2, 4);
+		tablero.añadirCelulaVida(3, 1);
+		tablero.añadirCelulaVida(4, 1);
+		tablero.añadirCelulaVida(4, 2);			
+		
+		mostrarMatriz(tablero.getMatriz());		
+			
+		for (int i = 0; i < 10; i++) {
+			
+			mostrarMatrizVecinos(tablero.getMatriz());
+			
+			tablero.siguienteEstado();
+			mostrarMatriz(tablero.getMatriz());
+			
+		}
 	}
 	
 	

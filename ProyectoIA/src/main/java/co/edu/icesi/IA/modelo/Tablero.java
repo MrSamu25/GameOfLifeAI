@@ -32,7 +32,7 @@ public class Tablero {
 	public void siguienteEstado() {
 		
 		int vecinos = 0;
-		int[][] nuevaMatriz = matriz;
+		int[][] nuevaMatriz = new int[matriz.length][matriz[0].length];
 		
 		//Todo está malo
 		
@@ -43,9 +43,14 @@ public class Tablero {
 				
 				vecinos = darVecinos(i, j);
 				
-				if(matriz[i][j] == MUERTO && vecinos == 3) {
+				if(matriz[i][j] == MUERTO) {
 					
-					nuevaMatriz[i][j] = VIVO;
+					if(vecinos == 3) {
+						nuevaMatriz[i][j] = VIVO;
+					}
+					else {
+						nuevaMatriz[i][j] = MUERTO;
+					}
 				}
 				
 				else if(matriz[i][j] == VIVO) {
