@@ -1,7 +1,6 @@
 package co.edu.icesi.IA.vista;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -93,8 +92,11 @@ public class InterfazPrincipal extends JFrame{
 //		tablero.añadirCelulaVida(tablero.getMatriz().length-1, 0);		
 	}
 	
+	//Recarga o actualiza el panel del tablero 
 	public void recargarPanel() {
 		panelTablero.repaint();
+		panelBotones.actualizarCelulasVivas();
 	}
-	
+
+
 }

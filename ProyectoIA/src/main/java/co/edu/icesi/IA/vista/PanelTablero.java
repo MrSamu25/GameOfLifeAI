@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
@@ -34,6 +35,9 @@ public class PanelTablero extends JPanel implements MouseListener{
 		
 		setPreferredSize(new Dimension(0,450));
 		setBackground(Color.GRAY);
+		//Por esto no me funcionaba, que estupides
+		this.addMouseListener(this);
+		
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,16 +93,59 @@ public class PanelTablero extends JPanel implements MouseListener{
 	}
 	
 	//Se agrega una celula en la ubicacion correspondiente en la que se hizo click en el tablero
-	public void agregarCelula(int X, int Y) {
+	public void agregarCelula(int posX, int posY) {	
+		int xFinalMatriz = this.encontrarPosicionFinalX(posX);
+		int yFinalMatriz = this.encontrarPosicionFinalY(posY);
+		principal.getTablero().añadirCelulaVida(yFinalMatriz, xFinalMatriz);
+		principal.recargarPanel();
 		
 	}
+	
+	//Encuentra la posicion en X de la matriz que corresponde a la ubicacion que hizo click en el tablero
+	public int encontrarPosicionFinalX(int posX) {
+		int xFinalMatriz = -1;
+		
+		int contador = 0;
+		boolean encontro = false;
+		
+		for (int i = INICIO_X; (i < INICIO_X + ANCHO) && !encontro; i=i+L) {
+			if(i<posX) {
+				contador++;
+			}
+			else {
+				encontro = true;
+			}		
+		}		
+		xFinalMatriz = contador-1;
+		//System.out.println("xFinalMatriz " + xFinalMatriz);		
+		return xFinalMatriz;
+	}
+	
+	//Encuentra la posicion en Y de la matriz que corresponde a la ubicacion que hizo click en el tablero
+	public int encontrarPosicionFinalY(int posY) {
+		int yFinalMatriz = -1;
+		
+		int contador = 0;
+		boolean encontro = false;
+		
+		for (int i = INICIO_Y; (i < INICIO_Y + ALTO) && !encontro; i=i+L) {
+			if(i<posY) {
+				contador++;
+			}
+			else {
+				encontro = true;
+			}		
+		}		
+		yFinalMatriz = contador-1;
+		//System.out.println("yFinalMatriz " + yFinalMatriz);		
+		return yFinalMatriz;
+	}
+	
 
+	//Al final de presionar click en el tablero se activa este metodo
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-		System.out.println("NO SIRVE NO SE POR QUE!!!!");
-		
+		agregarCelula(e.getX(), e.getY());		
 	}
 
 	@Override

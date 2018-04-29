@@ -86,7 +86,6 @@ public class PanelBotones extends JPanel implements ActionListener{
 				
 				principal.getTablero().siguienteEstado();
 				principal.recargarPanel();
-				labCelulasVivas.setText("CelulasVivas: " + principal.getTablero().getCelulasVivas());
 			}
 		});
 
@@ -115,6 +114,11 @@ public class PanelBotones extends JPanel implements ActionListener{
 			principal.recargarPanel();
 		}
 
+	}
+	
+	public void actualizarCelulasVivas() {
+
+		labCelulasVivas.setText("CelulasVivas: " + principal.getTablero().getCelulasVivas());
 	}
 	
 }
