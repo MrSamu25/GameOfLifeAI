@@ -14,6 +14,7 @@ public class Tablero {
 	//---------------------------------------------------------------------------------------
 	
 	private int[][] matriz;
+	private int celulasVivas;
 	
 	
 	//---------------------------------------------------------------------------------------
@@ -22,6 +23,7 @@ public class Tablero {
 
 	public Tablero(int n,int m) {
 		matriz = new int[n][m];
+		celulasVivas = 0;
 	}
 	
 	
@@ -29,9 +31,16 @@ public class Tablero {
 	//									MÉTODOS
 	//---------------------------------------------------------------------------------------
 	
+	
+	//Calcula el siguiente estado del tablero de acuerdo a las reglas del juego de Conway
+	// 1. Si una celula esta muerta, vive al sgt turno por reproduccion si tiene exactamente 3 celulas vecinas vivas 
+	// 2. Si una celula esta viva, sigue viviendo si tiene 2 0 3 vecinos, en caso contrario muere por soledad o sobrepoblacion
+	//Como se hace un recorrido total de la matriz, se aprovecha para calcular el # total de celulas vivas
 	public void siguienteEstado() {
 		
 		int vecinos = 0;
+		celulasVivas = 0;
+		
 		int[][] nuevaMatriz = new int[matriz.length][matriz[0].length];
 		
 		//Todo está malo
@@ -47,6 +56,7 @@ public class Tablero {
 					
 					if(vecinos == 3) {
 						nuevaMatriz[i][j] = VIVO;
+						celulasVivas++;
 					}
 					else {
 						nuevaMatriz[i][j] = MUERTO;
@@ -57,6 +67,7 @@ public class Tablero {
 					
 					if(vecinos == 2 || vecinos == 3) {
 						nuevaMatriz[i][j] = VIVO;
+						celulasVivas++;
 					}
 					else {
 						nuevaMatriz[i][j] = MUERTO;
@@ -72,8 +83,6 @@ public class Tablero {
 	//Retorna el numero de vecinos que tiene una celula en la ubicación de la matriz i,j
 	//Retorna -1 cuando no existe esa ubicación en el tablero
 	public int darVecinos(int i, int j) {
-		
-		//TODO dar vecinos
 		
 		int vecinos = 0;
 		
@@ -134,24 +143,8 @@ public class Tablero {
 	//Añade una celula viva en la posición (i,j)
 	public void añadirCelulaVida(int i, int j) {
 		matriz[i][j] = VIVO;
+		celulasVivas++;
 	}
-	
-	
-	//Retorna el numero de celulas vivas que se encuentran en el tablero
-	public int totalCelulasVivas() {
-		int total = 0;
-		
-		for (int i = 0; i < matriz.length; i++) {
-			
-			for (int j = 0; j < matriz[i].length; j++) {
-				if(matriz[i][j] == VIVO) {
-					total++;
-				}
-			}			
-		}		
-		
-		return total;
-	}	
 	
 	private boolean verificarIndiceAfuera(int i, int j) {
 		
@@ -172,6 +165,15 @@ public class Tablero {
 	public void setMatriz(int[][] matriz) {
 		this.matriz = matriz;
 	}
-	
+
+
+	public int getCelulasVivas() {
+		return celulasVivas;
+	}
+
+
+	public void setCelulasVivas(int celulasVivas) {
+		this.celulasVivas = celulasVivas;
+	}
 	
 }

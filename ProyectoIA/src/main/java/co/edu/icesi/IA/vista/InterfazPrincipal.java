@@ -48,8 +48,6 @@ public class InterfazPrincipal extends JFrame{
 		add(panelBanner, BorderLayout.NORTH);
 		add(panelTablero, BorderLayout.CENTER);
 		add(panelBotones, BorderLayout.SOUTH);
-		
-		
 	}
 
 	
@@ -64,11 +62,13 @@ public class InterfazPrincipal extends JFrame{
 		this.tablero = tablero;
 	}
 	
-	public void cargarConfiguracionInicial() {	
+	public void cargarConfiguracionInicial() {
 		
 		tablero = new Tablero( (PanelTablero.ALTO)/PanelTablero.L, (PanelTablero.ANCHO) / PanelTablero.L );	
 		
 		tablero.generarEstado();
+		tablero.getCelulasVivas();
+		
 //		tablero.añadirCelulaVida(30, 30);
 //		tablero.añadirCelulaVida(31, 30);
 //		tablero.añadirCelulaVida(32, 30);

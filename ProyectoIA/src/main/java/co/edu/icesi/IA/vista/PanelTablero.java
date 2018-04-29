@@ -3,6 +3,8 @@ package co.edu.icesi.IA.vista;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -10,7 +12,7 @@ import javax.swing.border.TitledBorder;
 
 import co.edu.icesi.IA.modelo.Tablero;
 
-public class PanelTablero extends JPanel{
+public class PanelTablero extends JPanel implements MouseListener{
 
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,7 +59,7 @@ public class PanelTablero extends JPanel{
 					g.setColor(Color.WHITE);
 				}
 				else {
-					g.setColor(Color.GREEN);
+					g.setColor(Color.GRAY);
 				}
 				g.fillRect(x, y, L, L);
 				x += L;				
@@ -86,5 +88,41 @@ public class PanelTablero extends JPanel{
 		
 	}
 	
+	//Se agrega una celula en la ubicacion correspondiente en la que se hizo click en el tablero
+	public void agregarCelula(int X, int Y) {
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("NO SIRVE NO SE POR QUE!!!!");
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

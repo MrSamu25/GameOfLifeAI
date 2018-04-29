@@ -3,6 +3,8 @@ package co.edu.icesi.IA.vista;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -37,7 +39,7 @@ public class PanelBanner extends JPanel{
 		super.paintComponent(g);
 		
 		//C	
-		g.setColor(Color.ORANGE);
+		g.setColor(Color.RED);
 		g.fillRect(INICIO_X, INICIO_Y, ANCHO, ANCHO);
 		g.fillRect(INICIO_X + ANCHO, INICIO_Y, ANCHO, ANCHO);
 		g.fillRect(INICIO_X - ANCHO, INICIO_Y + ANCHO, ANCHO, ANCHO);

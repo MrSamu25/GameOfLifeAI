@@ -3,17 +3,23 @@ package co.edu.icesi.IA.vista;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.TitledBorder;
 
-public class PanelBotones extends JPanel implements ActionListener {
+import org.omg.PortableServer.ThreadPolicyOperations;
+
+public class PanelBotones extends JPanel implements ActionListener{
 
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	// CONSTANTES
@@ -28,7 +34,8 @@ public class PanelBotones extends JPanel implements ActionListener {
 	private JButton butIniciar;
 	private JButton butDetener;
 	private JButton butLimpiar;
-
+	private JLabel labCelulasVivas;
+	
 	private Timer timer;
 	
 	private InterfazPrincipal principal;
@@ -63,9 +70,14 @@ public class PanelBotones extends JPanel implements ActionListener {
 		butDetener.addActionListener(this);
 		butLimpiar.addActionListener(this);
 
+		labCelulasVivas = new JLabel("CelulasVivas: " + principal.getTablero().getCelulasVivas());
+		Font f = new Font("TimesRoman", Font.BOLD, 18);
+		labCelulasVivas.setFont(f);
+		
 		add(butIniciar);
 		add(butDetener);
 		add(butLimpiar);
+		add(labCelulasVivas);
 
 		// Timer
 		// 1 seg = 1000 milisegundos
@@ -73,7 +85,8 @@ public class PanelBotones extends JPanel implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				
 				principal.getTablero().siguienteEstado();
-				principal.recargarPanel();				
+				principal.recargarPanel();
+				labCelulasVivas.setText("CelulasVivas: " + principal.getTablero().getCelulasVivas());
 			}
 		});
 
@@ -91,6 +104,7 @@ public class PanelBotones extends JPanel implements ActionListener {
 		if (comando.equals(INICIAR)) {
 			
 			timer.start();
+			
 		}
 		if (comando.equals(DETENER)) {
 			timer.stop();
