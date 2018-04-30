@@ -142,8 +142,11 @@ public class Tablero {
 	
 	//Añade una celula viva en la posición (i,j)
 	public void añadirCelulaVida(int i, int j) {
-		matriz[i][j] = VIVO;
-		celulasVivas++;
+		
+		if(matriz[i][j] == MUERTO) {
+			matriz[i][j] = VIVO;
+			celulasVivas++;
+		}
 	}
 	
 	private boolean verificarIndiceAfuera(int i, int j) {

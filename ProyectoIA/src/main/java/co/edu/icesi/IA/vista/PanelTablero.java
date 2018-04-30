@@ -145,7 +145,7 @@ public class PanelTablero extends JPanel implements MouseListener{
 	//Al final de presionar click en el tablero se activa este metodo
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		agregarCelula(e.getX(), e.getY());		
+		agregarCelula(e.getX(), e.getY());	
 	}
 
 	@Override
