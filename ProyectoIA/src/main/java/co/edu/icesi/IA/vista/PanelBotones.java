@@ -34,6 +34,8 @@ public class PanelBotones extends JPanel implements ActionListener{
 	private JButton butLimpiar;
 	private JLabel labCelulasVivas;
 	private JComboBox comboPatrones;
+	private JLabel labBucle;
+	private JLabel labGeneracion;
 	
 	private Timer timer;
 	
@@ -70,19 +72,22 @@ public class PanelBotones extends JPanel implements ActionListener{
 		butLimpiar.addActionListener(this);
 
 		labCelulasVivas = new JLabel("CelulasVivas: " + principal.getTablero().getCelulasVivas());
-		Font f = new Font("TimesRoman", Font.BOLD, 18);
-		labCelulasVivas.setFont(f);
 		
 		comboPatrones = new JComboBox(Tablero.NOMBRE_PATRONES);
 		comboPatrones.setBackground(Color.GRAY);
 		comboPatrones.setActionCommand(PATRONES);
 		comboPatrones.addActionListener(this);
 		
+		labBucle = new JLabel("Estable: " + principal.getTablero().isEstable());
+		labGeneracion = new JLabel("Generación: " + principal.getTablero().getGeneracion());
+		
 		add(butIniciar);
 		add(butDetener);
 		add(butLimpiar);
 		add(comboPatrones);
 		add(labCelulasVivas);
+		add(labGeneracion);
+		add(labBucle);
 		
 
 		// Timer
@@ -127,6 +132,11 @@ public class PanelBotones extends JPanel implements ActionListener{
 	public void actualizarCelulasVivas() {
 
 		labCelulasVivas.setText("CelulasVivas: " + principal.getTablero().getCelulasVivas());
+	}
+	
+	public void actualizarGeneracionBucle() {
+		labBucle.setText("Estable: " + principal.getTablero().isEstable());
+		labGeneracion.setText("Generación: " + principal.getTablero().getGeneracion());
 	}
 	
 }

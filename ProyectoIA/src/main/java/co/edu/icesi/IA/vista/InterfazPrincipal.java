@@ -75,6 +75,7 @@ public class InterfazPrincipal extends JFrame{
 	public void recargarPanel() {
 		panelTablero.repaint();
 		panelBotones.actualizarCelulasVivas();
+		panelBotones.actualizarGeneracionBucle();
 	}
 
 

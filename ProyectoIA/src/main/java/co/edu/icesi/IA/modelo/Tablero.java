@@ -1,5 +1,8 @@
 package co.edu.icesi.IA.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tablero {
 	
 	//---------------------------------------------------------------------------------------
@@ -8,7 +11,7 @@ public class Tablero {
 	
 	public final static int VIVO = 1;
 	public final static int MUERTO = 0;
-	public final static String[] NOMBRE_PATRONES = {"Aleatorio", "Glider", "Lightweight Spaceship", "Forma Creciente", "Cañon Deslizadores", "Quinto", "Sexto"};
+	public final static String[] NOMBRE_PATRONES = {"Aleatorio", "Glider", "Lightweight Spaceship", "Forma Creciente", "Cañon Deslizadores", "Quinto", "Vacio"};
 	
 	
 	//---------------------------------------------------------------------------------------
@@ -17,7 +20,9 @@ public class Tablero {
 	
 	private int[][] matriz;
 	private int celulasVivas;
-	
+	private List<String> registro;
+	private int generacion;
+	private boolean estable;
 	
 	//---------------------------------------------------------------------------------------
 	//									CONSTRUCTOR
@@ -26,6 +31,9 @@ public class Tablero {
 	public Tablero(int n,int m) {
 		matriz = new int[n][m];
 		celulasVivas = 0;
+		generacion = 0;
+		estable = false;
+		registro = new ArrayList<String>();
 	}
 	
 	
@@ -43,10 +51,9 @@ public class Tablero {
 		int vecinos = 0;
 		celulasVivas = 0;
 		
+		String representacionTMP = "";
+		
 		int[][] nuevaMatriz = new int[matriz.length][matriz[0].length];
-		
-		//Todo está malo
-		
 		
 		for (int i = 0; i < matriz.length; i++) {
 			
@@ -59,9 +66,13 @@ public class Tablero {
 					if(vecinos == 3) {
 						nuevaMatriz[i][j] = VIVO;
 						celulasVivas++;
+						
+						representacionTMP = representacionTMP + nuevaMatriz[i][j];
 					}
 					else {
 						nuevaMatriz[i][j] = MUERTO;
+						
+						representacionTMP = representacionTMP + nuevaMatriz[i][j];
 					}
 				}
 				
@@ -70,15 +81,28 @@ public class Tablero {
 					if(vecinos == 2 || vecinos == 3) {
 						nuevaMatriz[i][j] = VIVO;
 						celulasVivas++;
+						
+						representacionTMP = representacionTMP + nuevaMatriz[i][j];
 					}
 					else {
 						nuevaMatriz[i][j] = MUERTO;
+						
+						representacionTMP = representacionTMP + nuevaMatriz[i][j];
 					}
 				}				
 			}			
 		}
 		
+		if(verificarBucle(representacionTMP)) {
+			estable = true;
+		}		
+		
 		matriz = nuevaMatriz;
+		registro.add(representacionTMP);		
+		
+		if(!estable) {
+			generacion++;
+		}
 		
 	}
 	
@@ -154,6 +178,13 @@ public class Tablero {
 		if(patron.equals(NOMBRE_PATRONES[4])) {
 			this.generarPatronCanonDeslizadores();
 		}
+		if(patron.equals(NOMBRE_PATRONES[6])) {
+			
+		}
+		//Vacio
+		if(patron.equals(NOMBRE_PATRONES[6])) {
+			
+		}
 
 	}
 	
@@ -166,7 +197,7 @@ public class Tablero {
 				numero = (int) (Math.random()*10) + 1;
 				if(numero < 2) {
 					//el tablero esta vacio, siempre agrega una celula
-					cambiarEstadoCelula(i, j);
+					matriz[i][j] = VIVO;
 				}						
 			}
 		}
@@ -255,6 +286,23 @@ public class Tablero {
 		
 	}
 	
+	//Verifica que el registroNuevo este o no este en la lista Registro
+	public boolean verificarBucle(String registroNuevo) {
+
+		return registro.contains(registroNuevo);
+	}
+	
+	
+	public String darRepresentacionActual() {
+		String representacion = "";
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[i].length; j++) {
+				representacion = representacion + matriz[i][j];
+			}
+		}
+		return representacion;
+	}
+	
 	
 	
 	//Añade una celula viva en la posición (i,j)
@@ -268,6 +316,12 @@ public class Tablero {
 			matriz[i][j] = MUERTO;
 			celulasVivas--;
 		}
+		String representacion = darRepresentacionActual();
+		//Cambio la última representacion
+		if(registro.size()>0) {
+			registro.add(registro.size()-1, representacion);
+		}
+		
 	}
 	
 	private boolean verificarIndiceAfuera(int i, int j) {
@@ -298,6 +352,26 @@ public class Tablero {
 
 	public void setCelulasVivas(int celulasVivas) {
 		this.celulasVivas = celulasVivas;
+	}
+
+
+	public int getGeneracion() {
+		return generacion;
+	}
+
+
+	public void setGeneracion(int generacion) {
+		this.generacion = generacion;
+	}
+
+
+	public boolean isEstable() {
+		return estable;
+	}
+
+
+	public void setEstable(boolean bucle) {
+		this.estable = bucle;
 	}
 	
 }
