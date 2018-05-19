@@ -37,7 +37,8 @@ public class InterfazPrincipal extends JFrame{
 		
 		setLayout(new BorderLayout());
 		
-		cargarConfiguracionInicial();
+		//Patrón aleatorio
+		cargarConfiguracionTablero(Tablero.NOMBRE_PATRONES[0]);
 		
 		panelBanner = new PanelBanner();
 		panelTablero = new PanelTablero(this);
@@ -61,35 +62,13 @@ public class InterfazPrincipal extends JFrame{
 		this.tablero = tablero;
 	}
 	
-	public void cargarConfiguracionInicial() {
-		
+	//Establere una configuración de celulas en el tablero de acuerdo al patrón por parametro
+	public void cargarConfiguracionTablero(String patron) {		
 		tablero = new Tablero( (PanelTablero.ALTO)/PanelTablero.L, (PanelTablero.ANCHO) / PanelTablero.L );	
-		
-		tablero.generarEstado();
-		tablero.getCelulasVivas();
-		
-//		tablero.añadirCelulaVida(30, 30);
-//		tablero.añadirCelulaVida(31, 30);
-//		tablero.añadirCelulaVida(32, 30);
-//		
-//		tablero.añadirCelulaVida(20, 20);
-//		tablero.añadirCelulaVida(20,21);
-//		tablero.añadirCelulaVida(21, 20);
-//		tablero.añadirCelulaVida(21, 21);
-//		
-//		
-//		tablero.añadirCelulaVida(10, 60);
-//		tablero.añadirCelulaVida(10, 61);
-//		tablero.añadirCelulaVida(11, 62);
-//		tablero.añadirCelulaVida(11, 61);
-//		tablero.añadirCelulaVida(12, 61);
-//		
-//		
-//		tablero.añadirCelulaVida(tablero.getMatriz().length-1, tablero.getMatriz()[0].length-1);
-//		tablero.añadirCelulaVida(0,0);
-//		
-//		tablero.añadirCelulaVida(0, tablero.getMatriz()[0].length-1);
-//		tablero.añadirCelulaVida(tablero.getMatriz().length-1, 0);		
+		tablero.generarEstado(patron);
+		if(panelTablero != null) {
+			recargarPanel();
+		}
 	}
 	
 	//Recarga o actualiza el panel del tablero 

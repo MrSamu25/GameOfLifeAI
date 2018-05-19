@@ -25,6 +25,10 @@ public class PanelTablero extends JPanel implements MouseListener{
 	public final static int ALTO = 410;
 	public final static int L = 10;
 	
+	//Total en X = 40
+	//Total en Y = 96
+	
+	
 	private InterfazPrincipal principal;
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +100,7 @@ public class PanelTablero extends JPanel implements MouseListener{
 	public void agregarCelula(int posX, int posY) {	
 		int xFinalMatriz = this.encontrarPosicionFinalX(posX);
 		int yFinalMatriz = this.encontrarPosicionFinalY(posY);
-		principal.getTablero().añadirCelulaVida(yFinalMatriz, xFinalMatriz);
+		principal.getTablero().cambiarEstadoCelula(yFinalMatriz, xFinalMatriz);
 		principal.recargarPanel();
 		
 	}

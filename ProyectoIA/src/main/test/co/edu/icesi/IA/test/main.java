@@ -16,12 +16,12 @@ public class main {
 		
 
 		
-		tablero.añadirCelulaVida(1, 3);
-		tablero.añadirCelulaVida(1, 4);
-		tablero.añadirCelulaVida(2, 4);
-		tablero.añadirCelulaVida(3, 1);
-		tablero.añadirCelulaVida(4, 1);
-		tablero.añadirCelulaVida(4, 2);			
+		tablero.cambiarEstadoCelula(1, 3);
+		tablero.cambiarEstadoCelula(1, 4);
+		tablero.cambiarEstadoCelula(2, 4);
+		tablero.cambiarEstadoCelula(3, 1);
+		tablero.cambiarEstadoCelula(4, 1);
+		tablero.cambiarEstadoCelula(4, 2);			
 		
 		mostrarMatriz(tablero.getMatriz());		
 			

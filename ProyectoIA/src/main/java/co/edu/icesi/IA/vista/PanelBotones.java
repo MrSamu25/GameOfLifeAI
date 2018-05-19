@@ -6,18 +6,15 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.border.TitledBorder;
 
-import org.omg.PortableServer.ThreadPolicyOperations;
+import co.edu.icesi.IA.modelo.Tablero;
 
 public class PanelBotones extends JPanel implements ActionListener{
 
@@ -27,6 +24,7 @@ public class PanelBotones extends JPanel implements ActionListener{
 	public final static String INICIAR = "iniciar";
 	public final static String DETENER = "detener";
 	public final static String LIMPIAR = "limpiar";
+	public final static String PATRONES = "patrones";
 
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	// ATRIBUTOS
@@ -35,6 +33,7 @@ public class PanelBotones extends JPanel implements ActionListener{
 	private JButton butDetener;
 	private JButton butLimpiar;
 	private JLabel labCelulasVivas;
+	private JComboBox comboPatrones;
 	
 	private Timer timer;
 	
@@ -74,10 +73,17 @@ public class PanelBotones extends JPanel implements ActionListener{
 		Font f = new Font("TimesRoman", Font.BOLD, 18);
 		labCelulasVivas.setFont(f);
 		
+		comboPatrones = new JComboBox(Tablero.NOMBRE_PATRONES);
+		comboPatrones.setBackground(Color.GRAY);
+		comboPatrones.setActionCommand(PATRONES);
+		comboPatrones.addActionListener(this);
+		
 		add(butIniciar);
 		add(butDetener);
 		add(butLimpiar);
+		add(comboPatrones);
 		add(labCelulasVivas);
+		
 
 		// Timer
 		// 1 seg = 1000 milisegundos
@@ -100,18 +106,20 @@ public class PanelBotones extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent evento) {
 		String comando = evento.getActionCommand();
 
-		if (comando.equals(INICIAR)) {
-			
-			timer.start();
-			
+		if (comando.equals(INICIAR)) {			
+			timer.start();			
 		}
 		if (comando.equals(DETENER)) {
 			timer.stop();
 		}
 		if (comando.equals(LIMPIAR)) {
 			timer.stop();
-			principal.cargarConfiguracionInicial();
+			principal.cargarConfiguracionTablero(Tablero.NOMBRE_PATRONES[0]);
 			principal.recargarPanel();
+		}
+		if(comando.equals(PATRONES)) {
+			//Obtiene el item seleccionado
+			principal.cargarConfiguracionTablero(comboPatrones.getSelectedItem() + "");
 		}
 
 	}
